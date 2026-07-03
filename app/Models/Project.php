@@ -2,36 +2,47 @@
 
 namespace App\Models;
 
-use App\Models\Project;
-use App\Models\ProjectCategory;
+use App\Media\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, HasMedia;
+
     protected $fillable = [
         'status',
         'user_id',
         'category_id',
         'location',
-        'images',
         'amount',
         'sponsor_id',
         'title',
-        'description'
-        
+        'description',
+        'project_cost',
+        'start_date',
+        'completed_date',
     ];
+
+    protected $casts = [
+        'project_cost' => 'decimal:2',
+        'start_date' => 'date',
+        'completed_date' => 'date',
+        'amount' => 'decimal:2',
+    ];
+
     public function category()
     {
-        return $this->belongsTo(ProjectCategory::class,'category_id');
+        return $this->belongsTo(ProjectCategory::class, 'category_id');
     }
-    
-    // public function category(){
-    //     return $this->belongsTo(ProjectCategory::class,'category_id')->withDefault();
-    // }
-    // public function sponsor(){
-    //     return $this->hasMany(Sponsor::class,'id')->withDefault();
-    // }
-    
+
+    public function sponsor()
+    {
+        return $this->belongsTo(Sponsor::class, 'sponsor_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

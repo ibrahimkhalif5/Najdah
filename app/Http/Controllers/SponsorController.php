@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\SponsorController;
+use App\Models\Sponsor;
 
 class SponsorController extends Controller
 {
-    //
+    public function index()
+    {
+        $sponsors = Sponsor::with('media')->get();
+        return response()->json($sponsors);
+    }
 }

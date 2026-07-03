@@ -13,6 +13,7 @@ Bu işi sensiz yapmayın. Web sitemizi ziyaret ettiğiniz için teşekkür ederi
 
 'project-header'=>'Projelerimiz',
 
+'construction-of-education'=>'Eğitim ve İslami Bölge Merkezleri İnşaatı',
 'construction-of education'=>'Eğitim ve İslami Bölge Merkezleri İnşaatı',
 
 'provision-of-food'=>'Nakit Transferi Dahil Gıda ve Gıda Dışı Kalemlerin Sağlanması',
@@ -49,7 +50,7 @@ Bu işi sensiz yapmayın. Web sitemizi ziyaret ettiğiniz için teşekkür ederi
 'location1'=>'Nakuru ilçesi',
 'location2'=>'Nakuru Kasabası',
 'email'=>'E-posta',
-'email1'=>'nordhelpk@gmail.com',
+'email1'=>'info@najdah.org',
 'call'=>'Arama',
 'call1'=>'+254714404252',
 'call2'=>'+25425949999',
@@ -58,5 +59,14 @@ Bu işi sensiz yapmayın. Web sitemizi ziyaret ettiğiniz için teşekkür ederi
 'subject'=>'Ders',
 'mess'=>'İleti',
 'send'=>'Mesaj gönder',
+'type'=>'Tür',
+'select_type'=>'Mesaj türünü seçin...',
+'question'=>'Soru',
+'feedback'=>'Geri bildirim',
+'general'=>'Genel Soru',
+'thank_you'=>'Mesajınız için teşekkür ederiz. En kısa sürede size dönüş yapacağız.',
+'turnstile_error'=>'Lütfen güvenlik doğrulamasını tamamlayın.',
+'aid'=>'Acil Yardım Kapsamında Desteklenen Aileler',
+'worship'=>'İnşa Edilen ve Tamamlanan İbadethaneler',
 
 ];
