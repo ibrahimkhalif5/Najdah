@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id(); 
-            $table->string('category_id')->nullable();
-            $table->string('sponsor_id')->nullable();
-            $table->string('user_id')->nullable();
-            $table->string('amount')->nullable();
+            $table->integer('category_id')->nullable();
+            $table->integer('sponsor_id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('amount')->nullable();
             $table->string('status')->nullable();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
