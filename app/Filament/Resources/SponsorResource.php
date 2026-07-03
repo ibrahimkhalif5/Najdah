@@ -58,7 +58,7 @@ class SponsorResource extends Resource
                         ->label('Logo')
                         ->image()
                         ->directory('sponsors')
-                        ->maxSize(5120)
+                        ->maxSize(20480)
                         ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp']),
                     Hidden::make('sort_order'),
                 ])

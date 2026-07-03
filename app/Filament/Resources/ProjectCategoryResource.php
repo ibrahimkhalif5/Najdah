@@ -44,7 +44,7 @@ class ProjectCategoryResource extends Resource
                 ->label('Image')
                 ->directory('project_categories')
                 ->image()
-                ->maxSize(2048),
+                ->maxSize(20480),
         ]);
     }
 

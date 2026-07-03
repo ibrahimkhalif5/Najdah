@@ -47,7 +47,7 @@ class CertificateResource extends Resource
                         ->label('Image')
                         ->image()
                         ->directory('certificates')
-                        ->maxSize(5120)
+                        ->maxSize(20480)
                         ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp']),
                     Hidden::make('sort_order'),
                 ])

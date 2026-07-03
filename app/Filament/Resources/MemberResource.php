@@ -47,7 +47,7 @@ class MemberResource extends Resource
             FileUpload::make('photo')
                 ->image()
                 ->directory('members')
-                ->maxSize(1024)
+                ->maxSize(20480)
                 ->avatar(),
         ]);
     }

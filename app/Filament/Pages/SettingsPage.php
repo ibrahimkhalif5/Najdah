@@ -77,13 +77,13 @@ class SettingsPage extends Page implements HasForms
                         FileUpload::make('logo')
                             ->image()
                             ->directory('settings')
-                            ->maxSize(1024)
+                            ->maxSize(20480)
                             ->avatar()
                             ->label('Site Logo'),
                         FileUpload::make('favicon')
                             ->image()
                             ->directory('settings')
-                            ->maxSize(512)
+                            ->maxSize(20480)
                             ->avatar()
                             ->label('Favicon'),
                         Textarea::make('footer_text')->maxLength(65535),
