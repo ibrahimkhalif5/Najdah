@@ -64,7 +64,7 @@ return new class extends Migration
         // 7. Add `read_at` + indexes to `messages`
         // =============================================
         Schema::table('messages', function (Blueprint $table) {
-            $table->timestamp('read_at')->nullable()->after('message');
+            $table->timestamp('read_at')->nullable();
             $table->index('email', 'idx_messages_email');
             $table->index('created_at', 'idx_messages_created_at');
             $table->index('read_at', 'idx_messages_read_at');
