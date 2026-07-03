@@ -3,25 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use Illuminate\Http\Request;
 use App\Models\ProjectCategory;
-use App\Http\Controllers\ProjectCategoryController;
 
 class ProjectCategoryController extends Controller
 {
     public function category()
     {
-        $cat= ProjectCategory::all();
-         $procat=Project::all();
-        return view('pages.portfolio',compact('cat','procat'));
+        $cat = ProjectCategory::withCount('projects')->get();
+        return view('pages.portfolio', compact('cat'));
     }
-    public function projects()
-{
-    $pro = Project::take(5)->get();
-    $cat = ProjectCategory::all();
-    return view('pages.projects', compact('pro', 'cat'));
-}
 
-    
-    
+    public function projects()
+    {
+        $pro = Project::with(['category', 'sponsor', 'user', 'media'])
+            ->latest()
+            ->take(5)
+            ->get();
+        return view('pages.projects', compact('pro'));
+    }
+
+    public function thanks()
+    {
+        return view('pages.donationmodel');
+    }
 }

@@ -2,78 +2,93 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use App\Models\ProjectCategory;
-use Filament\Resources\Resource;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Forms\Components\FileUpload;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProjectCategoryResource\Pages;
-use App\Filament\Resources\ProjectCategoryResource\RelationManagers;
+use App\Models\ProjectCategory;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class ProjectCategoryResource extends Resource
 {
     protected static ?string $model = ProjectCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
+
+    protected static ?string $navigationGroup = 'Content';
+
+    protected static ?string $navigationLabel = 'Services';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                TextInput::make('category')
+        return $form->schema([
+            TextInput::make('category')
                 ->required()
-                ->rules('regex:/^[a-zA-Z\s]*$/')
-                ->placeholder('Enter project category')
-                ->label('Project category'),
-                TextInput::make('description')
-                ->required()
-                ->rules('regex:/^[a-zA-Z\s]*$/')
-                ->placeholder('Enter project category description')
-                ->label('Project category description'),
-                FileUpload::make('images')
-                ->label('Upload project category image')
+                ->maxLength(255)
+                ->label('Service name')
+                ->prefixIcon('heroicon-m-tag'),
+            Textarea::make('description')
+                ->maxLength(65535)
+                ->rows(3)
+                ->label('Short description'),
+            FileUpload::make('images')
+                ->label('Image')
                 ->directory('project_categories')
-                ->preserveFilenames()
-                ->acceptedFileTypes([
-                      'image/png', // PNG Images
-                    'image/jpeg', // JPG Images
-                ]),
-            ]);
+                ->image()
+                ->maxSize(2048),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('category'),
-                TextColumn::make('description'),
-                ImageColumn::make('images'),
+                TextColumn::make('category')
+                    ->searchable()
+                    ->sortable()
+                    ->weight('semibold'),
+                TextColumn::make('description')
+                    ->limit(50)
+                    ->color('gray'),
+                ImageColumn::make('images')
+                    ->circular()
+                    ->defaultImageUrl(fn ($record): string => 'https://ui-avatars.com/api/?name=' . urlencode($record->category) . '&background=7D0552&color=fff&size=40'),
+                TextColumn::make('projects_count')
+                    ->counts('projects')
+                    ->label('Projects')
+                    ->badge()
+                    ->color('primary'),
+                TextColumn::make('created_at')
+                    ->dateTime('M j, Y')
+                    ->sortable()
+                    ->toggleable()
+                    ->color('gray'),
             ])
-            ->filters([
-                //
-            ])
+            ->defaultSort('created_at', 'desc')
+            ->filters([])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make()
+                    ->icon('heroicon-m-pencil-square'),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

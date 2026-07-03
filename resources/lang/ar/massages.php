@@ -56,7 +56,7 @@ return [
 'location1'=>'مقاطعة ناكورو',
 'location2'=>'بلدة ناكورو',
 'email'=>'بريد إلكتروني',
-'email1'=>'nordhelpk@gmail.com',
+'email1'=>'info@najdah.org',
 'call'=>'يتصل',
 'call1'=>'+254714404252',
 'call2'=>'+25425949999',
@@ -65,6 +65,13 @@ return [
 'subject'=>'موضوع',
 'mess'=>'رسالة',
 'send'=>'أرسل رسالة',
+'type'=>'نوع',
+'select_type'=>'اختر نوع الرسالة...',
+'question'=>'سؤال',
+'feedback'=>'ملاحظات',
+'general'=>'استفسار عام',
+'thank_you'=>'شكرا لرسالتك. سنتواصل معك قريبا.',
+'turnstile_error'=>'يرجى إكمال التحقق الأمني.',
 
 
 
