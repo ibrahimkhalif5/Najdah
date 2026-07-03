@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id(); 
-            $table->integer('category_id')->nullable();
-            $table->integer('sponsor_id')->nullable();
-            $table->integer('user_id')->nullable();
-            $table->integer('amount')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('sponsor_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->decimal('amount', 15, 2)->nullable();
             $table->string('status')->nullable();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
