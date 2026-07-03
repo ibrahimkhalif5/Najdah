@@ -11,8 +11,8 @@
             @if($firstImage)
             <div class="swiper-slide">
                 <picture>
-                    <source srcset="{{ asset('storage/'.$firstImage) }}" media="(min-width: 769px)">
-                    <img src="{{ asset('storage/'.$firstImage) }}"
+                    <source srcset="{{ Storage::url($firstImage) }}" media="(min-width: 769px)">
+                    <img src="{{ Storage::url($firstImage) }}"
                          alt="{{ $gallary['title'] }}"
                          class="hero-image"
                          loading="{{ $loop->first ? 'eager' : 'lazy' }}"
@@ -240,13 +240,13 @@
             @php $galleryShown++; @endphp
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-card">
-                    <img src="{{ asset('storage/'.$image) }}" class="img-fluid" alt="{{ $gallary['title'] }}" loading="lazy" decoding="async">
+                    <img src="{{ Storage::url($image) }}" class="img-fluid" alt="{{ $gallary['title'] }}" loading="lazy" decoding="async">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
                             <h4>{{ $gallary['title'] }}</h4>
                             <p>{{ Str::limit($gallary['description'], 60) }}</p>
                         </div>
-                        <a href="{{ asset('storage/'.$image) }}" data-gallery="portfolioGallery"
+                        <a href="{{ Storage::url($image) }}" data-gallery="portfolioGallery"
                             class="gallery-link portfolio-lightbox" title="{{ $gallary['description'] }}">
                             <i class="bi bi-plus-lg"></i>
                         </a>
