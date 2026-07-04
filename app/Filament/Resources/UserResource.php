@@ -44,7 +44,7 @@ class UserResource extends Resource
                     ->dehydrated(fn (?string $state) => filled($state))
                     ->required(fn (string $operation): bool => $operation === 'create')
                     ->maxLength(255)
-                    ->prefixIcon('heroicon-m-lock'),
+                    ->prefixIcon('heroicon-m-lock-closed'),
             ]);
     }
 
